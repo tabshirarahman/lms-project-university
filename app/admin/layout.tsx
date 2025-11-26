@@ -2,11 +2,16 @@ import type React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
+import { LogOut } from "lucide-react";
+import { LogoutButton } from "@/components/logout-button";
+
 export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
-}) {
+  }) {
+  
+
   return (
     <div className="flex min-h-screen bg-background">
       <aside className="w-64 border-r border-border bg-card p-6 space-y-4">
@@ -43,6 +48,9 @@ export default function AdminLayout({
             <Link href="/admin/surveys">Surveys</Link>
           </Button>
         </nav>
+        <div className="border-t border-border pt-4">
+          <LogoutButton />
+        </div>
       </aside>
       <main className="flex-1 p-8">{children}</main>
     </div>

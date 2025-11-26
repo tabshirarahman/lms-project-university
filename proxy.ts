@@ -8,7 +8,7 @@ const protectedRoutes: Record<string, string[]> = {
   "/student": ["student"],
 };
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Check if route needs protection
@@ -48,5 +48,4 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: ["/admin/:path*", "/student/:path*"],
-  runtime: "nodejs",
 };
