@@ -26,8 +26,7 @@ export async function getStudentEnrolledCourses(
   await connectDB();
 
   const enrollments = await Enrollment.find({
-    studentId,
-
+    studentId
   })
     .populate("courseId")
     .sort({ enrolledAt: -1 }) // Most recent first

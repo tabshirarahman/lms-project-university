@@ -93,7 +93,9 @@ export default async function MyCoursesPage() {
                 </div>
 
                 <Button asChild className="w-full">
-                  <Link href={`/courses/${course._id}`}>Continue Learning</Link>
+                  <Link href={`/student/my-courses/${course._id}`}>
+                    Continue Learning
+                  </Link>
                 </Button>
               </div>
             </Card>
