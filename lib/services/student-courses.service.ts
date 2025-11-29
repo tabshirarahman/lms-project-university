@@ -27,7 +27,7 @@ export async function getStudentEnrolledCourses(
 
   const enrollments = await Enrollment.find({
     studentId,
-    status: "completed",
+
   })
     .populate("courseId")
     .sort({ enrolledAt: -1 }) // Most recent first

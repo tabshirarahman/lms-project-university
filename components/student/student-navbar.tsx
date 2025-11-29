@@ -15,18 +15,36 @@ export function StudentNavbar() {
   return (
     <nav className="border-b border-border bg-card">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/student/dashboard" className="text-2xl font-bold text-primary">
+        <Link
+          href="/student/dashboard"
+          className="text-2xl font-bold text-primary"
+        >
           LMS Platform
         </Link>
 
         <div className="flex gap-6 items-center">
-          <Link href="/student/dashboard" className="text-sm font-medium text-foreground hover:text-primary">
+          <Link
+            href="/student/dashboard"
+            className="text-sm font-medium text-foreground hover:text-primary"
+          >
             Dashboard
           </Link>
-          <Link href="/student/results" className="text-sm font-medium text-foreground hover:text-primary">
+          <Link
+            href="/student/my-courses"
+            className="text-sm font-medium text-foreground hover:text-primary"
+          >
+            My Courses
+          </Link>
+          <Link
+            href="/student/results"
+            className="text-sm font-medium text-foreground hover:text-primary"
+          >
             Results
           </Link>
-          <Link href="/student/profile" className="text-sm font-medium text-foreground hover:text-primary">
+          <Link
+            href="/student/profile"
+            className="text-sm font-medium text-foreground hover:text-primary"
+          >
             Profile
           </Link>
 
@@ -36,5 +54,5 @@ export function StudentNavbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }

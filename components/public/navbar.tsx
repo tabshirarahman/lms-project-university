@@ -4,7 +4,7 @@ import { getSession } from "@/lib/auth/session";
 import { LogoutButton } from "../logout-button";
 
 export async function  Navbar() {
-  const session = await getSession(); // SSR chec
+  const session = await getSession(); 
   return (
     <nav className="border-b border-border bg-card">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">

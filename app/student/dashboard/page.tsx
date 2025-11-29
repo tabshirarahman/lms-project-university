@@ -67,7 +67,7 @@ export default async function StudentDashboard() {
             <p className="text-sm text-muted-foreground mb-2">
               Enrolled Courses
             </p>
-            <p className="text-3xl font-bold text-primary">{enrolledCount}</p>
+            <p className="text-3xl font-bold text-primary">{enrolledCount+1}</p>
           </div>
         </Card>
 

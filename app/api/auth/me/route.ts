@@ -4,3 +4,4 @@ export async function GET() {
   const session = await requireAuth();
   return Response.json(session);
 }
+

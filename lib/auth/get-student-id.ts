@@ -13,7 +13,7 @@ import { getSession } from "@/lib/auth/session";
  */
 export async function getStudentId(): Promise<string | null> {
   const session = await getSession();
-  console.log("🚀 ~ getStudentId ~ session:", session)
+
 
   if (!session || !session.userId) {
     return null;

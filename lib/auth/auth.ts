@@ -2,7 +2,7 @@ import { User } from "@/lib/models/User";
 import { hashPassword, verifyPassword } from "./password";
 import type { AuthSession } from "@/lib/types";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
+
 
 export interface JWTPayload {
   userId: string;
