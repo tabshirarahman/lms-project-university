@@ -8,21 +8,16 @@ import Image from "next/image";
 export default async function SingleMyCoursePage({
   params,
 }: {
-  params: { id: string }; // <-- FIX HERE
-}) {
+  params: Promise<{ id: string }>;
+    }) {
     
     const { id } = await params;
 
     
-   const baseUrl =
-     process.env.NEXT_PUBLIC_BASE_URL ??
-     (process.env.VERCEL_URL
-       ? `https://${process.env.VERCEL_URL}`
-       : "https://lms-project-university-7hea.vercel.app");
+  const res = await fetch(`${process.env.VERCEL_URL}/api/enrollments/${id}`, {
+    cache: "no-store",
+  });
 
-   const res = await fetch(`${baseUrl}/api/enrollments/${id}`, {
-     cache: "no-store",
-   });
 
   if (!res.ok) {
     return (

@@ -5,10 +5,13 @@ import "@/lib/models/Course";
 import "@/lib/models/Student";
 
 
-export async function GET(request: NextRequest, context: { params: { id: string } }) {
+export async function GET(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
   try {
     const { id } = await context.params;
-
+  
     await connectDB();
 
     const enrollment = await Enrollment.findOne({ courseId: id })
@@ -19,8 +22,8 @@ export async function GET(request: NextRequest, context: { params: { id: string 
         { error: "Enrollment not found" },
         { status: 404 }
       );
-    }
-
+      }
+      
     //    const enrollment = await Enrollment.findOne({ courseId: id });
 
     return NextResponse.json(enrollment);
