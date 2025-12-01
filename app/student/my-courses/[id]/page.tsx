@@ -14,20 +14,35 @@ export default async function SingleMyCoursePage({
     const { id } = await params;
 
     
-  const res = await fetch(`${process.env.VERCEL_URL}/api/enrollments/${id}`, {
-    cache: "no-store",
-  });
 
+   const baseUrl = `${process.env.VERCEL_URL}`;
+   console.log("🚀 ~ SingleMyCoursePage ~ baseUrl:", baseUrl)
 
-  if (!res.ok) {
-    return (
-      <div className="p-10 text-center text-destructive font-medium">
-        Course not found or you do not have access.
-      </div>
-    );
-  }
+    let enrollment: any;
 
-    const   enrollment  = await res.json();
+    try {
+      const res = await fetch(`${baseUrl}/api/enrollments/${id}`, {
+        cache: "no-store",
+      });
+
+      if (!res.ok) {
+        console.error("Failed to fetch enrollment", res.status, res.statusText);
+        return (
+          <div className="p-10 text-center text-destructive font-medium">
+            Course not found or you do not have access.
+          </div>
+        );
+      }
+
+      enrollment = await res.json();
+    } catch (err) {
+      console.error("Error fetching enrollment", err);
+      return (
+        <div className="p-10 text-center text-destructive font-medium">
+          Something went wrong while loading this course.
+        </div>
+      );
+    }
   
     
     const course = enrollment?.courseId
