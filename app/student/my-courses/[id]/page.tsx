@@ -14,7 +14,7 @@ export default async function SingleMyCoursePage({
     const { id } = await params;
   // 🔒 Server-side protection
     const studentId = await requireStudentId();
-    console.log("🚀 ~ SingleMyCoursePage ~ studentId:", studentId)
+    
     
 
   const res = await fetch(`${process.env.VERCEL_URL}/api/enrollments/${id}`, {
@@ -32,9 +32,9 @@ export default async function SingleMyCoursePage({
   }
 
     const   enrollment  = await res.json();
-    console.log(enrollment);
+  
     
-    const course = enrollment.courseId
+    const course = enrollment?.courseId
 
   const statusColor =
     enrollment?.status &&  enrollment?.status === "completed"
@@ -43,23 +43,23 @@ export default async function SingleMyCoursePage({
       ? "bg-yellow-600"
       : "bg-blue-600";
 
-  const progress =enrollment.status &&  enrollment.status === "completed" ? 100 : 40; 
+  const progress =enrollment?.status &&  enrollment?.status === "completed" ? 100 : 40; 
 
   return (
     <main className="max-w-5xl mx-auto px-6 py-10 space-y-10">
       {/* Course Header */}
       <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-md">
         <Image
-          src={course.thumbnail || "https://via.placeholder.com/1200x600"}
-          alt={course.title}
+          src={course?.thumbnail || "https://via.placeholder.com/1200x600"}
+          alt={course?.title}
           fill
           className="object-cover"
         />
 
         <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex items-end p-6">
           <div>
-            <h1 className="text-3xl font-bold text-white">{course.title}</h1>
-            <p className="text-white/80 mt-1">{course.category}</p>
+            <h1 className="text-3xl font-bold text-white">{course?.title}</h1>
+            <p className="text-white/80 mt-1">{course?.category}</p>
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@ export default async function SingleMyCoursePage({
             <div className="flex items-center gap-3">
               <span className="font-medium">Status:</span>
               <Badge className={`${statusColor} text-white`}>
-                {enrollment.status.toUpperCase()}
+                {enrollment?.status.toUpperCase()}
               </Badge>
             </div>
 
