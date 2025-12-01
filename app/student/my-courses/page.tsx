@@ -14,7 +14,7 @@ export default async function MyCoursesPage() {
   }
 
   const enrolledCourses = await getStudentEnrolledCourses(studentId);
-  console.log("🚀 ~ MyCoursesPage ~ enrolledCourses:", enrolledCourses)
+
 
   return (
     <div className="space-y-6">
