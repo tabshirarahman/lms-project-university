@@ -8,8 +8,8 @@ import Image from "next/image";
 export default async function SingleMyCoursePage({
   params,
 }: {
-  params: Promise<{ id: string }>;
-    }) {
+  params: { id: string }; // <-- FIX HERE
+}) {
     
     const { id } = await params;
 
