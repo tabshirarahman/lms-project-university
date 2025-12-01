@@ -5,6 +5,7 @@ A comprehensive, full-stack Learning Management System built with Next.js, Mongo
 ## Features
 
 ### For Administrators
+
 - **Dashboard**: Real-time analytics with key metrics, survey statistics, and quick actions
 - **Student Management**: Create, update, and manage student records with pagination and search
 - **Department Management**: Organize courses and students by academic departments
@@ -14,6 +15,7 @@ A comprehensive, full-stack Learning Management System built with Next.js, Mongo
 - **Result Search**: Advanced search functionality to find results by student, exam, or department
 
 ### For Students
+
 - **Personal Dashboard**: View recent results, featured courses, and survey opportunities
 - **Results Tracking**: Access all exam results with detailed subject breakdown and GPA information
 - **Profile Management**: Update personal information and academic details
@@ -21,6 +23,7 @@ A comprehensive, full-stack Learning Management System built with Next.js, Mongo
 - **Survey Participation**: Provide feedback through institute surveys
 
 ### Public Features
+
 - **Landing Page**: Marketing homepage with live satisfaction metrics from surveys
 - **Course Listing**: Browse and explore all published courses
 - **About & Contact**: Information pages with contact form
@@ -41,28 +44,28 @@ A comprehensive, full-stack Learning Management System built with Next.js, Mongo
 
 \`\`\`
 ├── app/
-│   ├── admin/                 # Admin dashboard and management pages
-│   ├── api/                   # API routes for all CRUD operations
-│   ├── auth/                  # Authentication pages (login, register)
-│   ├── student/               # Student dashboard and results
-│   ├── courses/               # Public course pages
-│   ├── contact/               # Contact page
-│   ├── about/                 # About page
-│   ├── surveys/               # Public survey page
-│   └── page.tsx               # Landing page
+│ ├── admin/ # Admin dashboard and management pages
+│ ├── api/ # API routes for all CRUD operations
+│ ├── auth/ # Authentication pages (login, register)
+│ ├── student/ # Student dashboard and results
+│ ├── courses/ # Public course pages
+│ ├── contact/ # Contact page
+│ ├── about/ # About page
+│ ├── surveys/ # Public survey page
+│ └── page.tsx # Landing page
 ├── components/
-│   ├── admin/                 # Admin-specific components
-│   ├── public/                # Public-facing components
-│   ├── student/               # Student dashboard components
-│   └── ui/                    # shadcn/ui components
+│ ├── admin/ # Admin-specific components
+│ ├── public/ # Public-facing components
+│ ├── student/ # Student dashboard components
+│ └── ui/ # shadcn/ui components
 ├── lib/
-│   ├── db/
-│   │   ├── models/            # Mongoose models
-│   │   └── mongoose.ts        # Database connection
-│   ├── auth/                  # Authentication utilities
-│   ├── types/                 # TypeScript type definitions
-│   └── validations/           # Zod validation schemas
-└── public/                    # Static assets
+│ ├── db/
+│ │ ├── models/ # Mongoose models
+│ │ └── mongoose.ts # Database connection
+│ ├── auth/ # Authentication utilities
+│ ├── types/ # TypeScript type definitions
+│ └── validations/ # Zod validation schemas
+└── public/ # Static assets
 \`\`\`
 
 ## Database Schema
@@ -101,9 +104,10 @@ The system includes 13 MongoDB models:
    \`\`\`
 
 2. **Environment Setup**
+
    - Copy `.env.example` to `.env.local`
    - Update `MONGODB_URI` with your MongoDB connection string
-   - Adjust `VERCEL_URL` for your deployment environment
+   - Adjust `NEXT_PUBLIC_VERCEL_URL` for your deployment environment
 
 3. **Run Development Server**
    \`\`\`bash
@@ -114,11 +118,13 @@ The system includes 13 MongoDB models:
 ## API Endpoints
 
 ### Authentication
+
 - `POST /api/auth/register` - Register new user
 - `POST /api/auth/login` - Login user
 - `POST /api/auth/logout` - Logout user
 
 ### Students
+
 - `GET /api/students` - List all students (paginated)
 - `POST /api/students` - Create new student
 - `GET /api/students/[id]` - Get student details
@@ -126,12 +132,14 @@ The system includes 13 MongoDB models:
 - `DELETE /api/students/[id]` - Delete student
 
 ### Departments
+
 - `GET /api/departments` - List all departments
 - `POST /api/departments` - Create department
 - `PUT /api/departments/[id]` - Update department
 - `DELETE /api/departments/[id]` - Delete department
 
 ### Courses
+
 - `GET /api/courses` - List courses
 - `POST /api/courses` - Create course
 - `GET /api/courses/[id]` - Get course details
@@ -139,17 +147,20 @@ The system includes 13 MongoDB models:
 - `DELETE /api/courses/[id]` - Delete course
 
 ### Subjects
+
 - `GET /api/subjects` - List subjects
 - `POST /api/subjects` - Create subject
 - `PUT /api/subjects/[id]` - Update subject
 - `DELETE /api/subjects/[id]` - Delete subject
 
 ### Results
+
 - `GET /api/results` - List all results (paginated)
 - `POST /api/results` - Create result
 - `GET /api/results/search` - Search results by student, exam, or department
 
 ### Surveys
+
 - `GET /api/surveys` - List surveys
 - `POST /api/surveys` - Create survey
 - `PUT /api/surveys/[id]` - Update survey
@@ -162,10 +173,12 @@ The system includes 13 MongoDB models:
 ### Demo Credentials
 
 **Admin User**
+
 - Email: `admin@lms.com`
 - Password: `admin123`
 
 **Student User**
+
 - Email: `student@lms.com`
 - Password: `student123`
 
@@ -174,21 +187,27 @@ These accounts are provided for testing purposes. You can create additional user
 ## Key Features Explained
 
 ### Session Management
+
 The system uses HTTP-only cookies for secure session storage. Sessions are automatically set to expire after 7 days for security.
 
 ### Result Calculations
+
 Results automatically calculate:
+
 - Total marks from individual subject marks
 - GPA (Grade Point Average) from marks
 - Pass/fail status based on passing criteria
 
 ### Survey Analytics
+
 The system aggregates survey responses and calculates:
+
 - Total responses count
 - Satisfaction percentage (from rating-type questions)
 - Response breakdown by question
 
 ### Role-Based Access
+
 - Admin users can access `/admin/*` routes with full management capabilities
 - Students can access `/student/*` routes with personalized dashboards
 - Public users can access landing page, courses, and surveys without authentication
@@ -203,6 +222,7 @@ The system aggregates survey responses and calculates:
    \`\`\`
 
 2. **Connect to Vercel**
+
    - Go to [vercel.com](https://vercel.com)
    - Click "New Project" and select your repository
    - Add environment variables in the Vercel dashboard
@@ -215,6 +235,7 @@ The system aggregates survey responses and calculates:
 ### Deploy to Other Platforms
 
 The project can also be deployed to:
+
 - AWS (using Lambda or EC2)
 - Google Cloud Platform
 - Azure
@@ -242,16 +263,19 @@ Just ensure MongoDB is accessible and environment variables are properly configu
 ## Troubleshooting
 
 ### MongoDB Connection Issues
+
 - Verify `MONGODB_URI` is correct in `.env.local`
 - Check MongoDB Atlas IP whitelist includes your IP
 - Ensure database credentials are valid
 
 ### Authentication Issues
+
 - Clear browser cookies and try logging in again
 - Check browser console for specific error messages
 - Verify user exists in database
 
 ### API Errors
+
 - Check Next.js console for detailed error messages
 - Verify all required fields are provided in POST/PUT requests
 - Ensure user has appropriate role/permissions
@@ -259,6 +283,7 @@ Just ensure MongoDB is accessible and environment variables are properly configu
 ## Contributing
 
 This project is ready for customization and extension. Consider adding:
+
 - File upload support (assignments, documents)
 - Email notifications
 - Payment integration for paid courses
@@ -273,6 +298,7 @@ This project is built with Next.js and is free to use and modify.
 ## Support
 
 For issues or questions:
+
 1. Check the troubleshooting section above
 2. Review the API documentation
 3. Examine existing code examples

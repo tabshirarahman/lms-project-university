@@ -4,57 +4,53 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import Image from "next/image";
 
-
 export default async function SingleMyCoursePage({
   params,
 }: {
   params: Promise<{ id: string }>;
-    }) {
-    
-    const { id } = await params;
+}) {
+  const { id } = await params;
 
-    
+  const baseUrl = `${process.env.NEXT_PUBLIC_NEXT_PUBLIC_VERCEL_URL}`;
+  console.log("🚀 ~ SingleMyCoursePage ~ baseUrl:", baseUrl);
 
-   const baseUrl = `${process.env.VERCEL_URL}`;
-   console.log("🚀 ~ SingleMyCoursePage ~ baseUrl:", baseUrl)
+  let enrollment: any;
 
-    let enrollment: any;
+  try {
+    const res = await fetch(`${baseUrl}/api/enrollments/${id}`, {
+      cache: "no-store",
+    });
 
-    try {
-      const res = await fetch(`${baseUrl}/api/enrollments/${id}`, {
-        cache: "no-store",
-      });
-
-      if (!res.ok) {
-        console.error("Failed to fetch enrollment", res.status, res.statusText);
-        return (
-          <div className="p-10 text-center text-destructive font-medium">
-            Course not found or you do not have access.
-          </div>
-        );
-      }
-
-      enrollment = await res.json();
-    } catch (err) {
-      console.error("Error fetching enrollment", err);
+    if (!res.ok) {
+      console.error("Failed to fetch enrollment", res.status, res.statusText);
       return (
         <div className="p-10 text-center text-destructive font-medium">
-          Something went wrong while loading this course.
+          Course not found or you do not have access.
         </div>
       );
     }
-  
-    
-    const course = enrollment?.courseId
+
+    enrollment = await res.json();
+  } catch (err) {
+    console.error("Error fetching enrollment", err);
+    return (
+      <div className="p-10 text-center text-destructive font-medium">
+        Something went wrong while loading this course.
+      </div>
+    );
+  }
+
+  const course = enrollment?.courseId;
 
   const statusColor =
-    enrollment?.status &&  enrollment?.status === "completed"
+    enrollment?.status && enrollment?.status === "completed"
       ? "bg-green-600"
       : enrollment.status === "pending"
       ? "bg-yellow-600"
       : "bg-blue-600";
 
-  const progress =enrollment?.status &&  enrollment?.status === "completed" ? 100 : 40; 
+  const progress =
+    enrollment?.status && enrollment?.status === "completed" ? 100 : 40;
 
   return (
     <main className="max-w-5xl mx-auto px-6 py-10 space-y-10">

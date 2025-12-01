@@ -17,7 +17,7 @@ export default async function CourseDetailPage({
 
   try {
     const response = await fetch(
-      `${process.env.VERCEL_URL || "http://localhost:3000"}/api/courses/${id}`,
+      `${process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"}/api/courses/${id}`,
       {
         cache: "no-store",
       }

@@ -11,7 +11,7 @@ export default async function Home() {
   }
 
   try {
-    const response = await fetch(`${process.env.VERCEL_URL || "http://localhost:3000"}/api/survey-stats`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"}/api/survey-stats`, {
       cache: "no-store",
     })
     if (response.ok) {
