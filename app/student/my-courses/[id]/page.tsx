@@ -14,10 +14,15 @@ export default async function SingleMyCoursePage({
     const { id } = await params;
 
     
-  const res = await fetch(`${process.env.VERCEL_URL}/api/enrollments/${id}`, {
-    cache: "no-store",
-  });
+   const baseUrl =
+     process.env.NEXT_PUBLIC_BASE_URL ??
+     (process.env.VERCEL_URL
+       ? `https://${process.env.VERCEL_URL}`
+       : "https://lms-project-university-7hea.vercel.app");
 
+   const res = await fetch(`${baseUrl}/api/enrollments/${id}`, {
+     cache: "no-store",
+   });
 
   if (!res.ok) {
     return (
