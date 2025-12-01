@@ -16,7 +16,6 @@ export default async function SingleMyCoursePage({
     
   const res = await fetch(`${process.env.VERCEL_URL}/api/enrollments/${id}`, {
     cache: "no-store",
-    credentials: "include",
   });
 
 
