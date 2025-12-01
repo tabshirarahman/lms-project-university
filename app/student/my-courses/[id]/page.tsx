@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import Image from "next/image";
-import { requireStudentId } from "@/lib/auth/get-student-id";
+
 
 export default async function SingleMyCoursePage({
   params,
@@ -12,11 +12,8 @@ export default async function SingleMyCoursePage({
     }) {
     
     const { id } = await params;
-  // 🔒 Server-side protection
-    const studentId = await requireStudentId();
-    
-    
 
+    
   const res = await fetch(`${process.env.VERCEL_URL}/api/enrollments/${id}`, {
     cache: "no-store",
     credentials: "include",

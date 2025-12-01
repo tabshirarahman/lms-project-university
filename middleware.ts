@@ -8,42 +8,44 @@ const protectedRoutes: Record<string, string[]> = {
   "/student": ["student"],
 };
 
-export function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
 
   // Check if route needs protection
-  const protectedRoute = Object.entries(protectedRoutes).find(([route]) => pathname.startsWith(route))
+  const protectedRoute = Object.entries(protectedRoutes).find(([route]) =>
+    pathname.startsWith(route)
+  );
 
   if (!protectedRoute) {
-    return NextResponse.next()
+    return NextResponse.next();
   }
 
-  const token = request.cookies.get("auth-token")?.value
+  const token = request.cookies.get("auth-token")?.value;
 
   if (!token) {
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }
 
-  const payload = verifyToken(token)
+  const payload = verifyToken(token);
 
   if (!payload) {
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }
 
-  const [, allowedRoles] = protectedRoute
+  const [, allowedRoles] = protectedRoute;
   if (!allowedRoles.includes(payload.role)) {
-    return NextResponse.redirect(new URL("/", request.url))
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
-  const requestHeaders = new Headers(request.headers)
-  requestHeaders.set("x-user-id", payload.userId)
-  requestHeaders.set("x-user-role", payload.role)
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-user-id", payload.userId);
+  requestHeaders.set("x-user-role", payload.role);
 
   return NextResponse.next({
     request: {
       headers: requestHeaders,
     },
-  })
+  });
 }
 
 export const config = {
