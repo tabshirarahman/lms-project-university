@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 
 export default async function MyCoursesPage() {
   const studentId = await getStudentId();
-  console.log("🚀 ~ MyCoursesPage ~ studentId:", studentId)
+ 
 
   if (!studentId) {
     redirect("/login");
@@ -82,18 +82,21 @@ export default async function MyCoursesPage() {
 
                 <div className="space-y-2 text-sm text-muted-foreground">
                   <div className="flex items-center justify-between">
-                    <span>Instructor: {course.instructor}</span>
+                    {course?.instructor && (
+                      <span>Instructor: {course.instructor}</span>
+                    )}
                   </div>
                   <div className="flex items-center justify-between">
-                    <span>Duration: {course.duration}</span>
+                    {course.duration && (
+                      <span>Duration: {course.duration} hours</span>)}
                   </div>
                   <div className="text-xs">
-                    Enrolled: {new Date(course.enrolledAt).toLocaleDateString()}
+                    Enrolled: {new Date(course?.enrolledAt).toLocaleDateString()}
                   </div>
                 </div>
 
                 <Button asChild className="w-full">
-                  <Link href={`/student/my-courses/${course._id}`}>
+                  <Link href={`/student/my-courses/${course?._id}`}>
                     Continue Learning
                   </Link>
                 </Button>
