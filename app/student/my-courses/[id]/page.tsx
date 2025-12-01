@@ -50,7 +50,7 @@ export default async function SingleMyCoursePage({
       {/* Course Header */}
       <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-md">
         <Image
-          src={course?.thumbnail || "https://via.placeholder.com/1200x600"}
+          src={course?.thumbnail || "/placeholder.svg"}
           alt={course?.title}
           fill
           className="object-cover"
