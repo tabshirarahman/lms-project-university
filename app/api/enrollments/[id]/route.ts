@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Enrollment } from "@/lib/models/Enrollment"; 
 import { connectDB } from "@/lib/db/mongoose";
+import "@/lib/models/Course";
+import "@/lib/models/Student";
 
 
 export async function GET(
@@ -9,7 +11,7 @@ export async function GET(
 ) {
   try {
     const { id } = await context.params;
-    console.log("🚀 ~ GET ~ id:", id)
+  
     await connectDB();
 
     const enrollment = await Enrollment.findOne({ courseId: id })
