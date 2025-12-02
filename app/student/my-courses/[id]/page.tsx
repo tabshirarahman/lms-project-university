@@ -11,8 +11,8 @@ export default async function SingleMyCoursePage({
 }) {
   const { id } = await params;
 
-  const baseUrl = `${process.env.NEXT_PUBLIC_NEXT_PUBLIC_VERCEL_URL}`;
-  console.log("🚀 ~ SingleMyCoursePage ~ baseUrl:", baseUrl);
+  const baseUrl = `https://lms-project-university-7hea.vercel.app`;
+ 
 
   let enrollment: any;
 
