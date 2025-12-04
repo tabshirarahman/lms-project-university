@@ -260,7 +260,6 @@ Public surveys accessible to everyone.
 Request body:
 \`\`\`json
 {
-"title": "Student Satisfaction Survey",
 "description": "Rate your experience",
 "targetGroup": "Students",
 "visibility": "public"

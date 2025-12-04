@@ -8,9 +8,34 @@ import { createResult } from "@/lib/services/result.service";
 
 export async function GET(request: NextRequest) {
   try {
-    await requireAdmin();
     const { searchParams } = new URL(request.url);
     const query = Object.fromEntries(searchParams);
+
+    // Detect if query is empty (no filters)
+    const hasQuery =
+      Object.keys(query).length > 0 &&
+      (query.page ||
+        query.limit ||
+        query.search ||
+        query.studentId ||
+        query.examId);
+
+    // ⚡ If no query → return full results (no pagination)
+    if (!hasQuery) {
+      const allResults = await Result.find({})
+       
+
+      return NextResponse.json({
+        data: allResults,
+        pagination: {
+          total: allResults.length,
+          page: 1,
+          limit: allResults.length,
+          pages: 1,
+          hasNextPage: false,
+        },
+      });
+    }
 
     const { data, pagination } = await handleList(query, {
       model: Result,
