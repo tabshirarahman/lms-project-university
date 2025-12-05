@@ -12,9 +12,7 @@ export default async function Home() {
   
 
   try {
-    const baseURL =
-      process.env.NEXT_PUBLIC_VERCEL_URL ||
-      "https://lms-project-university-7hea.vercel.app";
+    const baseURL = "https://lms-project-university-7hea.vercel.app";
 
     const [resultsRes, courseRes, studentRes] = await Promise.all([
       fetch(`${baseURL}/api/results`, { cache: "no-store" }),
